@@ -1,0 +1,23 @@
+---
+title: "conllr Vignette"
+author: "Niko Partanen"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{conllr Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+library(tidyverse)
+library(conllr)
+
+rus <- read_conll('~/langdoc/universal_dependencies/ud-treebanks-conll2017/UD_Russian-SynTagRus/ru_syntagrus-ud-train.conllu')
+read_conll('~/langdoc/universal_dependencies/ud-treebanks-conll2017/UD_Catalan/ca-ud-train.conllu')
+read_conll('~/langdoc/universal_dependencies/ud-treebanks-conll2017/UD_Kazakh/kk-ud-train.conllu')
+
+rus
+
+```
+
