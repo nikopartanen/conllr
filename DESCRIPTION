@@ -1,0 +1,10 @@
+Package: conllr
+Type: Package
+Title: Work with CoNLL files in R
+Version: 0.1.0
+Author: Niko Partanen
+Maintainer: Niko Partanen <nikotapiopartanen@gmail.com>
+Description: This package reads and writes CoNLL files.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
