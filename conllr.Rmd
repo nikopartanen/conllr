@@ -1,23 +1,44 @@
 ---
-title: "conllr Vignette"
-author: "Niko Partanen"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{conllr Vignette}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+title: "A test with conllu.js in R"
+author: Niko Partanen
+output:
+  html_document:
+    includes:
+      after_body: after_body.html
+      in_header: header.html
+    section_divs: FALSE
+    lib_dir: lib
+    self_contained: no
 ---
 
-```{r}
-library(tidyverse)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+This is a test with using [conllu.js](http://spyysalo.github.io/conllu.js/) JavaScript library within an RMarkdown document, so that it would be easy to embed UD examples into HTML documents. More complete version would have different output for PDF and HTML, but now this is mainly my personal testing.
+
+## Examples
+
+conllu.js allows displaying graphically trees annotated in CoNLL-U format. The library is done by Sampo Pyysalo.
+
+```{r, results='asis'}
+suppressPackageStartupMessages(library(tidyverse))
 library(conllr)
 
-rus <- read_conll('~/langdoc/universal_dependencies/ud-treebanks-conll2017/UD_Russian-SynTagRus/ru_syntagrus-ud-train.conllu')
-read_conll('~/langdoc/universal_dependencies/ud-treebanks-conll2017/UD_Catalan/ca-ud-train.conllu')
-read_conll('~/langdoc/universal_dependencies/ud-treebanks-conll2017/UD_Kazakh/kk-ud-train.conllu')
+uig <- read_conll('https://raw.githubusercontent.com/UniversalDependencies/UD_Uyghur/master/ug-ud-dev.conllu')
 
-rus
+uig %>% 
+  filter(id == 's901') %>%
+  as_conllu_div()
 
+```
+
+Ok, so that works fine. The only problem is that there doesn't seem to be any API to retrieve individual UD example sentences by language and ID. If I want to discuss one Finnish or Russian example, I don't want to read the whole files, but could ideally just retrieve the one I need.
+
+The way I have now been writing CONLL-U files is like this:
+
+```{r}
+# Example here
 ```
 
