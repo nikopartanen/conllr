@@ -25,6 +25,6 @@ read_conll <- function(conll_file = '~/langdoc/universal_dependencies/ud-treeban
     dplyr::filter(! stringr::str_detect(string, '^#')) %>% # if there are more annotations above the sentence, those are now disgarded
     dplyr::ungroup() %>%
     tidyr::separate(col = string,
-                    into = c('id', 'form', 'lemma', 'upostag', 'xpostag', 'feats', 'head', 'deprel', 'deps', 'misc'),
+                    into = c('id_form', 'form', 'lemma', 'upostag', 'xpostag', 'feats', 'head', 'deprel', 'deps', 'misc'),
                     sep = '\t')
 }
