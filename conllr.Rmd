@@ -16,11 +16,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-This is a test with using [conllu.js](http://spyysalo.github.io/conllu.js/) JavaScript library within an RMarkdown document, so that it would be easy to embed UD examples into HTML documents. More complete version would have different output for PDF and HTML, but now this is mainly my personal testing.
+This is a test with using [conllu.js](http://spyysalo.github.io/conllu.js/) JavaScript library within an RMarkdown document, so that it would be easy to embed UD examples into HTML documents. conllu.js allows displaying graphically trees annotated in CoNLL-U format. The library is done by Sampo Pyysalo. All JavaScript, CSS and HTML files are more less directly taken from the examples on [conllu.js](http://spyysalo.github.io/conllu.js/) website. 
+
+For this experiment, a more complete version would have different output for PDF and HTML, but now this is mainly my personal testing. There are also lots of possibilities to modify the Edit-button, as there could be all kind of additional information such as citation info.
 
 ## Examples
-
-conllu.js allows displaying graphically trees annotated in CoNLL-U format. The library is done by Sampo Pyysalo.
 
 ```{r, results='asis'}
 suppressPackageStartupMessages(library(tidyverse))
@@ -35,10 +35,3 @@ uig %>%
 ```
 
 Ok, so that works fine. The only problem is that there doesn't seem to be any API to retrieve individual UD example sentences by language and ID. If I want to discuss one Finnish or Russian example, I don't want to read the whole files, but could ideally just retrieve the one I need.
-
-The way I have now been writing CONLL-U files is like this:
-
-```{r}
-# Example here
-```
-
