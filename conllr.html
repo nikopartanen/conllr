@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Niko Partanen" />
+
+
+<title>A test with conllu.js in R</title>
+
+<script src="lib/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lib/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="lib/navigation-1.1/tabsets.js"></script>
+<link href="lib/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="lib/highlightjs-1.1/highlight.js"></script>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Tree visualization</title>
+
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-redmond.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style-vis.css"/>
+    <script type="text/javascript" src="head.load.min.js"></script>
+<!--     <link rel="shortcut icon" href="favicon.ico"/> -->
+  
+    <!-- Leipzig.js -->
+
+    <!-- CSS 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/leipzig/latest/leipzig.min.css">-->
+
+    <!-- JavaScript
+    <script src="//cdn.jsdelivr.net/leipzig/latest/leipzig.min.js"></script> -->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">A test with conllu.js in R</h1>
+<h4 class="author"><em>Niko Partanen</em></h4>
+
+</div>
+
+
+<p>This is a test with using <a href="http://spyysalo.github.io/conllu.js/">conllu.js</a> JavaScript library within an RMarkdown document, so that it would be easy to embed UD examples into HTML documents. More complete version would have different output for PDF and HTML, but now this is mainly my personal testing.</p>
+<h2 id="examples">Examples</h2>
+<p>conllu.js allows displaying graphically trees annotated in CoNLL-U format. The library is done by Sampo Pyysalo.</p>
+<pre class="r"><code>suppressPackageStartupMessages(library(tidyverse))
+library(conllr)
+
+uig &lt;- read_conll(&#39;https://raw.githubusercontent.com/UniversalDependencies/UD_Uyghur/master/ug-ud-dev.conllu&#39;)
+
+uig %&gt;% 
+  filter(id == &#39;s901&#39;) %&gt;%
+  as_conllu_div()</code></pre>
+<div class="conllu-parse" tabs="yes">1	مەن	_	PRON	P	_	27	nsubj
+2	بولسام	_	AUX	V	_	1	cop
+3	شەكىل	_	NOUN	N	_	4	obj
+4	ئۆزگەرتىپ	_	VERB	V	_	19	advcl
+5	ئۆزۈم	_	PRON	P	_	7	nsubj
+6	قەدىرلەپ	_	NOUN	N	_	7	advmod
+7	سۆيگەن	_	VERB	V	_	9	acl
+8	بىر	_	NUM	M	_	9	nummod
+9	قىزنىڭ	_	NOUN	N	_	10	nmod:poss
+10	تومۇرىدىكى	_	NOUN	N	_	14	amod
+11	ئىسسىق	_	ADJ	A	_	14	aux
+12	،	_	PUNCT	Y	_	11	punct
+13	قىزىل	_	ADJ	A	_	14	amod
+14	قېنىنى	_	NOUN	N	_	15	obj
+15	شوراۋاتقان	_	NOUN	N	_	18	acl
+16	يەتتە	_	NUM	M	_	17	nummod
+17	باشلىق	_	NOUN	N	_	18	amod
+18	يالماۋۇزغا	_	NOUN	N	_	19	obl
+19	ئايلىنىپ	_	VERB	V	_	27	advcl
+20	،	_	PUNCT	Y	_	19	punct
+21	كىمدۇر	_	PRON	P	_	22	compound
+22	بىرىنىڭ	_	NUM	M	_	26	nmod:poss
+23	ئاتلىق	_	ADJ	A	_	24	advmod
+24	كېلىپ	_	VERB	V	_	26	advcl
+25	مېنى	_	PRON	P	_	26	obj
+26	ئۆلتۈرۈۋېتىشىنى	_	VERB	V	_	27	obj
+27	كۈتەتتىم	_	VERB	V	_	0	root
+28	.	_	PUNCT	Y	_	27	punct
+</div>
+<p>Ok, so that works fine. The only problem is that there doesn’t seem to be any API to retrieve individual UD example sentences by language and ID. If I want to discuss one Finnish or Russian example, I don’t want to read the whole files, but could ideally just retrieve the one I need.</p>
+<p>The way I have now been writing CONLL-U files is like this:</p>
+<pre class="r"><code># Example here</code></pre>
+
+<script type="text/javascript">
+    // TODO pull this stuff from a more reasonable location
+    var root = 'https://nikopartanen.github.io/conllu-vis/';
+    head.js(
+        // External libraries
+        root + 'lib/ext/jquery.min.js',
+        root + 'lib/ext/jquery.svg.min.js',
+        root + 'lib/ext/jquery.svgdom.min.js',
+        root + 'lib/ext/jquery-ui.min.js',
+        root + 'lib/ext/waypoints.min.js',
+
+        // brat helper modules
+        root + 'lib/brat/configuration.js',
+        root + 'lib/brat/util.js',
+        root + 'lib/brat/annotation_log.js',
+        root + 'lib/ext/webfont.js',
+        // brat modules
+        root + 'lib/brat/dispatcher.js',
+        root + 'lib/brat/url_monitor.js',
+        root + 'lib/brat/visualizer.js',
+
+        // embedding support modules
+        'https://nikopartanen.github.io/conllu-vis/lib/local/annodoc.js',
+	root + 'conllu.js'
+	//root + 'lib/local/config.js'
+    );
+
+
+    var bratCollData = {
+	'entity_types': [
+// this is optional
+        {
+            'type': 'SPAN_DEFAULT',
+            'bgColor': '#7fa2ff',
+            'borderColor': 'darken'
+        },
+        {
+            'type': 'ARC_DEFAULT',
+            'color': 'black',
+            'arrowHead': 'triangle,5,5',
+            'labelArrow': 'triangle,3,8',
+            'args': [
+                {
+                    'role': 'arg1',
+                    'targets': [ 'token' ]
+                },
+                {
+                    'role': 'arg2',
+                    'targets': [ 'token' ]
+                }
+            ]
+        },
+        {
+            'type': 'token',
+            'labels': [ '\u00A0\u00A0' ], // non-breaking space for empty
+        },
+        {
+            'type': '-',
+            'labels': [ '\u00A0\u00A0' ], // non-breaking space for empty
+        }
+	],
+  'event_attribute_types': [],
+  'entity_attribute_types': [
+        {
+            'type':   'Name',
+            'values': {
+                'Name' : { 'glyph': '(N)' },
+             },
+         },
+         ],
+	'relation_types': [
+// this is optional
+        ],
+	'event_types': [],
+    };
+
+    var webFontURLs = [
+//        root + 'static/fonts/Astloch-Bold.ttf',
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    /* collection data, not applicable here. */
+    var documentCollections = {};
+
+    head.ready(function() {
+	// performes all embedding and support functions
+	Annodoc.activate(bratCollData, documentCollections);
+    });
+</script>
+
+      <div id="footer">
+          <p class="footer-text">embedded brat &copy; 2010- the <a href="http://brat.nlplab.org/about.html" style="color:gray">brat contributors</a></p>
+      </div>
+    </div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
