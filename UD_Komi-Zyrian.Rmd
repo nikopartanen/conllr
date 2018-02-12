@@ -17,9 +17,9 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This is a HTML display into the trees annotated within upcoming Universal Dependencies Komi-Zyrian corpus. The work has been coordinated by Niko Partanen in LATTICE laboratory, but there have been several participants. The work connects closely to multilingual dependency parsing approach currently being developed in LATTICE.
+This is a HTML display into the trees annotated within upcoming Universal Dependencies Komi-Zyrian corpus. The work has been coordinated by Niko Partanen in LATTICE laboratory, but there have been several participants. The work connects closely to multilingual dependency parsing approach currently being developed in LATTICE. In case there are comments of questions, please contact Niko Partanen (nikotapiopartanen@gmail.com).
 
-```{r, results='asis'}
+```{r, results='asis', echo=FALSE}
 suppressPackageStartupMessages(library(tidyverse))
 library(conllr)
 library(purrr)

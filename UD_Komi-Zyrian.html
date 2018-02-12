@@ -141,20 +141,7 @@ $(document).ready(function () {
 </div>
 
 
-<p>This is a HTML display into the trees annotated within upcoming Universal Dependencies Komi-Zyrian corpus. The work has been coordinated by Niko Partanen in LATTICE laboratory, but there have been several participants. The work connects closely to multilingual dependency parsing approach currently being developed in LATTICE.</p>
-<pre class="r"><code>suppressPackageStartupMessages(library(tidyverse))
-library(conllr)
-library(purrr)
-library(purrrlyr)
-
-kpv &lt;- read_conll(&#39;https://raw.githubusercontent.com/langdoc/UD_Komi-Zyrian/master/kpv-ud-test.conllu&#39;)
-
-kpv %&gt;% 
-  distinct(id) %&gt;% 
-  pull(id) %&gt;%
-  map(~ kpv %&gt;% filter(id == .x) %&gt;%
-        as_conllu_div()) %&gt;%
-  shiny::div()</code></pre>
+<p>This is a HTML display into the trees annotated within upcoming Universal Dependencies Komi-Zyrian corpus. The work has been coordinated by Niko Partanen in LATTICE laboratory, but there have been several participants. The work connects closely to multilingual dependency parsing approach currently being developed in LATTICE. In case there are comments of questions, please contact Niko Partanen (<a href="mailto:nikotapiopartanen@gmail.com">nikotapiopartanen@gmail.com</a>).</p>
 <div>
 <div class="conllu-parse" tabs="yes">1	Водз	водз	ADV	Adv	_	2	advmod
 2	асылын	асыв	NOUN	N	_	3	advmod
