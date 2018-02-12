@@ -1,0 +1,37 @@
+---
+title: "Komi-Zyrian UD corpus"
+author: Niko Partanen
+output:
+  html_document:
+    includes:
+      after_body: after_body.html
+      in_header: header.html
+    section_divs: FALSE
+    lib_dir: lib
+    self_contained: no
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is a HTML display into the trees annotated within upcoming Universal Dependencies Komi-Zyrian corpus. The work has been coordinated by Niko Partanen in LATTICE laboratory, but there have been several participants. The work connects closely to multilingual dependency parsing approach currently being developed in LATTICE.
+
+```{r, results='asis'}
+suppressPackageStartupMessages(library(tidyverse))
+library(conllr)
+library(purrr)
+library(purrrlyr)
+
+kpv <- read_conll('https://raw.githubusercontent.com/langdoc/UD_Komi-Zyrian/master/kpv-ud-test.conllu')
+
+kpv %>% 
+  distinct(id) %>% 
+  pull(id) %>%
+  map(~ kpv %>% filter(id == .x) %>%
+        as_conllu_div()) %>%
+  shiny::div()
+
+```
